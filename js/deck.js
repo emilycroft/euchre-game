@@ -13,13 +13,13 @@ class Deck {
       for (var j = 0; j < values.length; j++) {
         this.cards.push(new Card(suits[i], values[j], j))
       }
-    } 
+    }
   } // end load()
 
   shuffle() {
     let deck         = this.cards,
-        currentIndex = deck.length, 
-        temporaryValue, 
+        currentIndex = deck.length,
+        temporaryValue,
         randomIndex;
 
     // While there remain elements to shuffle...
@@ -34,12 +34,8 @@ class Deck {
       deck[currentIndex] = deck[randomIndex];
       deck[randomIndex] = temporaryValue;
     }
-
   }
 
-  
-
   deal() {
-
   }
 }

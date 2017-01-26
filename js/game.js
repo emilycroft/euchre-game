@@ -29,28 +29,24 @@ class Game {
     playerTwoController.showCard(shownCardTwo)
     this.checkWinner({ playerOne: shownCardOne, playerTwo: shownCardTwo})
     this.checkIfWon()
-   
-
-    // if (shownCardOne.defaultValue > shownCardTwo.defaultValue) {
-    //   this.playerOne.addCards([shownCardOne, shownCardTwo])
-    //   controller.updateStatus("Yay for player 1")
-    // } else if (shownCardOne.defaultValue < shownCardTwo.defaultValue) {
-    //   this.playerTwo.addCards([shownCardOne, shownCardTwo])
-    //   controller.updateStatus("Yay for player 2")
-    // } else if (shownCardOne.defaultValue === shownCardTwo.defaultValue) {
-    //   this.playerOne.addCards([shownCardOne])
-    //   this.playerTwo.addCards([shownCardTwo])
-    //   controller.updateStatus("???????")
-    // }
-   
   }
 
   checkWinner(obj) {
     var cards = [obj.playerOne, obj.playerTwo]
-    card.value(trump) > card.value()
-    }
 
-  }
+    if (cards[0].value(trump) > cards[1].value()) {
+      this.playerOne.addCards([shownCardOne, shownCardTwo])
+      controller.updateStatus("Yay for player 1")
+    } else if (cards[0].value(trump) < cards[1].value()) {
+      this.playerTwo.addCards([shownCardOne, shownCardTwo])
+      controller.updateStatus("Yay for player 2")
+    } else if (cards[0].value(trump) === cards[1].value()) {
+      this.playerOne.addCards([shownCardOne])
+      this.playerTwo.addCards([shownCardTwo])
+      controller.updateStatus("???????")
+      }
+    }
+  
 
   checkIfWon() {
     if (this.playerOne.hand.length === 0) {
