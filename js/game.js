@@ -1,4 +1,6 @@
 const suits = ["clubs", "spades", "hearts", "diamonds"]
+
+
 const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
 //
 
@@ -6,6 +8,7 @@ class Game {
   constructor() {
     this.playerOne = new Player()
     this.playerTwo = new Player()
+    this.trump
   }
 
   start() {
@@ -24,18 +27,29 @@ class Game {
     console.log(`player one's card was ${shownCardOne.cardName()}, player two's card was ${shownCardTwo.cardName()}`)
     playerOneController.showCard(shownCardOne)
     playerTwoController.showCard(shownCardTwo)
-    if (shownCardOne.defaultValue > shownCardTwo.defaultValue) {
-      this.playerOne.addCards([shownCardOne, shownCardTwo])
-      controller.updateStatus("Yay for player 1")
-    } else if (shownCardOne.defaultValue < shownCardTwo.defaultValue) {
-      this.playerTwo.addCards([shownCardOne, shownCardTwo])
-      controller.updateStatus("Yay for player 2")
-    } else if (shownCardOne.defaultValue === shownCardTwo.defaultValue) {
-      this.playerOne.addCards([shownCardOne])
-      this.playerTwo.addCards([shownCardTwo])
-      controller.updateStatus("???????")
-    }
+    this.checkWinner({ playerOne: shownCardOne, playerTwo: shownCardTwo})
     this.checkIfWon()
+   
+
+    // if (shownCardOne.defaultValue > shownCardTwo.defaultValue) {
+    //   this.playerOne.addCards([shownCardOne, shownCardTwo])
+    //   controller.updateStatus("Yay for player 1")
+    // } else if (shownCardOne.defaultValue < shownCardTwo.defaultValue) {
+    //   this.playerTwo.addCards([shownCardOne, shownCardTwo])
+    //   controller.updateStatus("Yay for player 2")
+    // } else if (shownCardOne.defaultValue === shownCardTwo.defaultValue) {
+    //   this.playerOne.addCards([shownCardOne])
+    //   this.playerTwo.addCards([shownCardTwo])
+    //   controller.updateStatus("???????")
+    // }
+   
+  }
+
+  checkWinner(obj) {
+    var cards = [obj.playerOne, obj.playerTwo]
+    card.value(trump) > card.value()
+    }
+
   }
 
   checkIfWon() {
