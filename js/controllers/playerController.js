@@ -1,7 +1,7 @@
 class PlayerController {
   constructor(playerDiv) {
     this.playerDiv = document.getElementById(playerDiv)
-    this.cardCount = this.playerDiv.getElementsByClassName('card-count')[0]
+    this.cards = this.playerDiv.getElementsByClassName('cards')[0]
     this.playedCard = this.playerDiv.getElementsByClassName('played-card')[0]
   }
 
@@ -9,7 +9,12 @@ class PlayerController {
     this.playedCard.textContent = card.cardName()
   }
 
-  showCardCount(playerCardCount) {
-    this.cardCount.textContent = `You have ${playerCardCount} cards`
+  showHand(cards) {
+    var string = ""
+    for (var i = 0; i < cards.length; i++) {
+      string += `<li>${cards[i].cardName()}</li>`
+    }
+    this.cards.innerHTML = string
+
   }
 }

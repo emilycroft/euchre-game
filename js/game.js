@@ -6,10 +6,10 @@ const values = [9, 10, 'J', 'Q', 'K', 'A']
 
 class Game {
   constructor() {
-    this.playerOne = new Player()
-    this.playerTwo = new Player()
-    this.playerThree = new Player()
-    this.playerFour = new Player()
+    this.playerOne = new Player('playerOne')
+    this.playerTwo = new Player('playerTwo')
+    this.playerThree = new Player('playerThree')
+    this.playerFour = new Player('playerFour')
     this.team1 = [this.playerOne, this.playerTwo]
     this.team2 = [this.playerThree, this.playerFour]
     this.trump
@@ -28,12 +28,21 @@ class Game {
     this.blind = this.deck.slice( 20 )
   }
 
+  bidding() {
+     var topCard = this.blind.shift()
+     this.trump  = topCard.suit
+    controller.updateStatus(`The top card is ${topCard.cardName()}`)
+    for (var i = 0; i < this.team1.length; i++) {
+      this.team1[i].showCards()
+  }
+}
+
   play() {
     var shownCardOne = this.playerOne.hand.shift()
     var shownCardTwo = this.playerTwo.hand.shift()
     console.log(`player one's card was ${shownCardOne.cardName()}, player two's card was ${shownCardTwo.cardName()}`)
-    playerOneController.showCard(shownCardOne)
-    playerTwoController.showCard(shownCardTwo)
+    playerOne.controller.showCard(shownCardOne)
+    playerTwo.controller.showCard(shownCardTwo)
     this.checkWinner({ playerOne: shownCardOne, playerTwo: shownCardTwo})
     this.checkIfWon()
   }
