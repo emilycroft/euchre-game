@@ -10,8 +10,7 @@ class Game {
     this.playerTwo = new Player('playerTwo')
     this.playerThree = new Player('playerThree')
     this.playerFour = new Player('playerFour')
-    this.team1 = [this.playerOne, this.playerTwo]
-    this.team2 = [this.playerThree, this.playerFour]
+    this.players = [this.playerOne, this.playerTwo, this.playerThree, this.playerFour]
     this.trump
   }
 
@@ -32,8 +31,8 @@ class Game {
      var topCard = this.blind.shift()
      this.trump  = topCard.suit
     controller.updateStatus(`The top card is ${topCard.cardName()}`)
-    for (var i = 0; i < this.team1.length; i++) {
-      this.team1[i].showCards()
+    for (var i = 0; i < this.players.length; i++) {
+      this.players[i].showCards()
   }
 }
 

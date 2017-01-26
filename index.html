@@ -12,41 +12,44 @@
 </head>
 <body>
 
-<button id="spades" class="trump">Spades</button>
-<button id="diamonds" class="trump">Diamonds</button>
-<button id="clubs" class="trump">Clubs</button>
-<button id="hearts" class="trump">Hearts</button>
+<div id="wrapper">
+  <div id="status">
+  </div>
 
-<div id="status">
+  <div id="team-1">
+    <h1>TEAM 1</h1>
+    <div id="playerOne">
+      <h2>Player One</h2>
+      <ul class="cards"> </ul>
+      <div class="played-card"></div>
+    </div>
+
+    <div id="playerThree">
+      <h2>Player Three</h2>
+      <ul class="cards"> </ul>
+      <div class="played-card"></div>
+    </div>
+
+  </div>
+
+  <div id="team-2">
+    <h1>TEAM 2</h1>
+    <div id="playerTwo">
+      <h2>Player Two</h2>
+      <ul class="cards"> </ul>
+      <div class="played-card"></div>
+    </div>
+
+    <div id="playerFour">
+      <h2>Player Four</h2>
+      <ul class="cards"> </ul>
+      <div class="played-card"></div>
+    </div>
+
+  </div>
 </div>
-
-<div id="playerOne">
-  <h2>Player One</h2>
-  <ul class="cards"> </ul> 
-  <div class="played-card"></div>
-</div>
-
-<div id="playerTwo">
-  <h2>Player Two</h2>
-  <ul class="cards"> </ul> 
-  <div class="played-card"></div>
-
-</div>
-
-<div id="playerThree">
-  <h2>Player Three</h2>
-  <ul class="cards"> </ul> 
-  <div class="played-card"></div>
-</div>
-
-<div id="playerFour">
-  <h2>Player Four</h2>
-  <ul class="cards"> </ul> 
-  <div class="played-card"></div>
-</div>
-
-
 </body>
+
 
 <script>
   var controller = new GameController();
