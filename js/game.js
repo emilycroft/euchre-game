@@ -8,6 +8,10 @@ class Game {
   constructor() {
     this.playerOne = new Player()
     this.playerTwo = new Player()
+    this.playerThree = new Player()
+    this.playerFour = new Player()
+    this.team1 = [this.playerOne, this.playerTwo]
+    this.team2 = [this.playerThree, this.playerFour]
     this.trump
   }
 
@@ -17,8 +21,11 @@ class Game {
   }
 
   deal() {
-    this.playerOne.addCards( this.deck.slice( 0, 12 ))
-    this.playerTwo.addCards( this.deck.slice( 12 ))
+    this.playerOne.addCards( this.deck.slice( 0, 5 ))
+    this.playerTwo.addCards( this.deck.slice( 5, 10 ))
+    this.playerThree.addCards( this.deck.slice( 10, 15 ))
+    this.playerFour.addCards( this.deck.slice( 15, 20 ))
+    this.blind = this.deck.slice( 20 )
   }
 
   play() {
