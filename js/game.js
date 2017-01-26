@@ -1,7 +1,7 @@
 const suits = ["clubs", "spades", "hearts", "diamonds"]
 
 
-const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+const values = [9, 10, 'J', 'Q', 'K', 'A']
 //
 
 class Game {
@@ -17,8 +17,8 @@ class Game {
   }
 
   deal() {
-    this.playerOne.addCards( this.deck.slice( 0, 26 ))
-    this.playerTwo.addCards( this.deck.slice( 26 ))
+    this.playerOne.addCards( this.deck.slice( 0, 12 ))
+    this.playerTwo.addCards( this.deck.slice( 12 ))
   }
 
   play() {
@@ -33,20 +33,20 @@ class Game {
 
   checkWinner(obj) {
     var cards = [obj.playerOne, obj.playerTwo]
-
-    if (cards[0].value(trump) > cards[1].value()) {
-      this.playerOne.addCards([shownCardOne, shownCardTwo])
+    var trump = this.trump
+    if (cards[0].value(trump) > cards[1].value(trump)) {
+      this.playerOne.addCards(cards)
       controller.updateStatus("Yay for player 1")
-    } else if (cards[0].value(trump) < cards[1].value()) {
-      this.playerTwo.addCards([shownCardOne, shownCardTwo])
+    } else if (cards[0].value(trump) < cards[1].value(trump)) {
+      this.playerTwo.addCards(cards)
       controller.updateStatus("Yay for player 2")
-    } else if (cards[0].value(trump) === cards[1].value()) {
-      this.playerOne.addCards([shownCardOne])
-      this.playerTwo.addCards([shownCardTwo])
+    } else if (cards[0].value(trump) === cards[1].value(trump)) {
+      this.playerOne.addCards([cards[0]])
+      this.playerTwo.addCards([cards[1]])
       controller.updateStatus("???????")
       }
     }
-  
+
 
   checkIfWon() {
     if (this.playerOne.hand.length === 0) {

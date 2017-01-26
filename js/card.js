@@ -20,13 +20,12 @@ class Card {
       return this.defaultValue
     }
   }
-
 }
 
-color(str) {
+function color(str) {
   if (str === "spades" || str === "clubs") {
     return "black"
-  } else if if (str === "hearts" || str === "diamonds") {
+  } else if (str === "hearts" || str === "diamonds") {
     return "red"
   }
 }
