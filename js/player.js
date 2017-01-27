@@ -3,6 +3,7 @@ class Player {
     this.hand = []
     this.name = name
     this.controller = new PlayerController(playerDiv)
+    this.playerDiv = playerDiv
   }
 
   addCards(card) {
