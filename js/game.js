@@ -15,7 +15,7 @@ class Game {
 
   play() {
     // while (this.winner === null) {
-      let round = new Round(this.players)
+      this.round = new Round(this.players)
       let player = this.players.shift()
       this.players.push(player)
     // }
