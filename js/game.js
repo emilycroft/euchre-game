@@ -1,8 +1,6 @@
 const suits = ["clubs", "spades", "hearts", "diamonds"]
 
-
 const values = [9, 10, 'J', 'Q', 'K', 'A']
-//
 
 class Game {
   constructor() {
@@ -16,8 +14,7 @@ class Game {
   }
 
   play() {
-    // while (i < 5 || this.winner === null) {
-    debugger
+    // while (this.winner === null) {
       let round = new Round(this.players)
       let player = this.players.shift()
       this.players.push(player)
@@ -29,17 +26,16 @@ class Game {
     var trump = this.trump
     if (cards[0].value(trump) > cards[1].value(trump)) {
       this.playerOne.addCards(cards)
-      controller.updateStatus("Yay for player 1")
+      GameController.controller.updateStatus("Yay for player 1")
     } else if (cards[0].value(trump) < cards[1].value(trump)) {
       this.playerTwo.addCards(cards)
-      controller.updateStatus("Yay for player 2")
+      GameController.controller.updateStatus("Yay for player 2")
     } else if (cards[0].value(trump) === cards[1].value(trump)) {
       this.playerOne.addCards([cards[0]])
       this.playerTwo.addCards([cards[1]])
-      controller.updateStatus("???????")
-      }
+      GameController.controller.updateStatus("???????")
     }
-
+  }
 
   checkIfWon() {
     if (this.playerOne.hand.length === 0) {

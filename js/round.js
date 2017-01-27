@@ -16,10 +16,10 @@ class Round {
   }
 
   bidding() {
+    debugger
     var topCard = this.blind.shift()
     this.trump  = topCard.suit
-    debugger
-    controller.updateStatus(`The top card is ${topCard.cardName()}`)
+    GameController.controller.updateStatus(`The top card is ${topCard.cardName()}`)
     for (var i = 0; i < this.players.length; i++) {
       this.players[i].showCards()
     }
