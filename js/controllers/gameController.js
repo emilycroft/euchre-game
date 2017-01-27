@@ -3,8 +3,8 @@ class GameController {
     this.status = document.getElementById('status')
     // this.button = document.getElementById('nextRound')
     this.game = new Game()
-
-    this.game.start()
+    this.constructor.controller = this
+    this.game.play()
   }
 
   updateStatus(str) {
@@ -34,3 +34,5 @@ class GameController {
     alert('nope!!')
   }
 }
+
+GameController.controller = null

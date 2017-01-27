@@ -11,39 +11,17 @@ class Game {
     this.playerThree = new Player('playerThree')
     this.playerFour = new Player('playerFour')
     this.players = [this.playerOne, this.playerTwo, this.playerThree, this.playerFour]
-    this.trump
+    this.score = {team1: 0, team2: 0}
+    this.winner = null
   }
-
-  start() {
-    this.deck = new Deck()
-    this.deal()
-  }
-
-  deal() {
-    this.playerOne.addCards( this.deck.slice( 0, 5 ))
-    this.playerTwo.addCards( this.deck.slice( 5, 10 ))
-    this.playerThree.addCards( this.deck.slice( 10, 15 ))
-    this.playerFour.addCards( this.deck.slice( 15, 20 ))
-    this.blind = this.deck.slice( 20 )
-  }
-
-  bidding() {
-     var topCard = this.blind.shift()
-     this.trump  = topCard.suit
-    controller.updateStatus(`The top card is ${topCard.cardName()}`)
-    for (var i = 0; i < this.players.length; i++) {
-      this.players[i].showCards()
-  }
-}
 
   play() {
-    var shownCardOne = this.playerOne.hand.shift()
-    var shownCardTwo = this.playerTwo.hand.shift()
-    console.log(`player one's card was ${shownCardOne.cardName()}, player two's card was ${shownCardTwo.cardName()}`)
-    playerOne.controller.showCard(shownCardOne)
-    playerTwo.controller.showCard(shownCardTwo)
-    this.checkWinner({ playerOne: shownCardOne, playerTwo: shownCardTwo})
-    this.checkIfWon()
+    // while (i < 5 || this.winner === null) {
+    debugger
+      let round = new Round(this.players)
+      let player = this.players.shift()
+      this.players.push(player)
+    // }
   }
 
   checkWinner(obj) {
@@ -67,6 +45,7 @@ class Game {
     if (this.playerOne.hand.length === 0) {
       controller.updateStatus("player 2 won")
       controller.button.remove()
+      return
     } else if (this.playerTwo.hand.length === 0) {
       controller.updateStatus("player 1 won")
       controller.button.remove()
