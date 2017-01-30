@@ -12,14 +12,20 @@ class Trick {
   playCard(index, player) {
     let playerIndex = GameController.controller.game.players.indexOf(player)
     let card = player.hand.splice(index, 1)
-    this.playedCard({player: player, card: card[0]})
-    var nextPlayer = GameController.controller.game.players[playerIndex + 1]
-    if (nextPlayer) {
-      GameController.controller.displayCards.bind(nextPlayer)()
-    } else {
-      this.whoWon()
+    let nextPlayer
 
+    this.playedCard({player: player, card: card[0]})
+
+    if (playerIndex === 3) {
+      nextPlayer = GameController.controller.game.players[0]
+    } else {
+      nextPlayer = GameController.controller.game.players[playerIndex + 1]
     }
+    if (this.cardsPlayed.length === 4) {
+      this.whoWon()
+    } else {
+      GameController.controller.displayCards.bind(nextPlayer)()
+    }   
   }
 
   playedCard(card) {
