@@ -76,7 +76,6 @@ class GameController {
   }
 
   trickWinner(winner) {
-    debugger
     if (winner === this.game.playerOne || winner === this.game.playerThree) {
       this.round.tricksWon.team1 += 1
     } else if (winner === this.game.playerTwo || winner === this.game.playerFour) {
