@@ -61,45 +61,56 @@ class GameController {
     }
 
     if (GameController.controller.trick) {
-        GameController.controller.pickACardAnyCard(this.hand)
+        GameController.controller.pickACardAnyCard(this)
     } else if (GameController.controller.round.caller != null ) {
-      GameController.controller.letTheGamesBegin(this.hand)
+      GameController.controller.letTheGamesBegin(this)
     } else {
       GameController.controller.biddingButtons(string)
     }
   }
 
-  letTheGamesBegin(hand) {
+  letTheGamesBegin(player) {
     this.trick = new Trick(GameController.controller.game.players[0])
-    this.pickACardAnyCard(hand)
+    this.pickACardAnyCard(player)
 
   }
 
   trickWinner(winner) {
-    debugger
     if (winner === this.game.playerOne || winner === this.game.playerThree) {
       this.round.tricksWon.team1 += 1
     } else if (winner === this.game.playerTwo || winner === this.game.playerFour) {
       this.round.tricksWon.team2 += 1
     }
+    this.trick = new Trick(winner)
+    this.displayCards.bind(winner)()
   }
 
 
-  pickACardAnyCard(hand) {
+  pickACardAnyCard(player) {
 
-    for (var i = 0; i < hand.length; i++) {
-      let node = this.createButton( this.selectCard, hand[i].cardName(), 'player-actions', 'card' + i)
+    for (var i = 0; i < player.hand.length; i++) {
+      let selectedCard = this.selectCard(player)
+      let node = this.createButton( selectedCard, player.hand[i].cardName(), 'player-actions', 'card' + i)
       node.setAttribute('data-cardid', i)
     }
 
   }
 
-  selectCard() {
-    let i = this.getAttribute('data-cardid')
-    GameController.controller.trick.playCard(i, GameController.controller.round.players[3])
-    GameController.controller.round.nextPlayer()
-
+  selectCard(player) {
+    return function(){
+      let i = this.getAttribute('data-cardid')
+      GameController.controller.trick.playCard(i, player)
+      GameController.controller.round.nextPlayer()
+    }
   }
+
+  // selectCard() {
+  //   let i = this.getAttribute('data-cardid')
+
+  //   GameController.controller.trick.playCard(i, player)
+  //   GameController.controller.round.nextPlayer()
+
+  // }
 
   biddingButtons(string) {
     if (GameController.controller.round.counter > 8) {
