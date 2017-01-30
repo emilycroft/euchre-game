@@ -5,6 +5,7 @@ class Round {
     this.players = playersArray.slice(0)
     this.dealer = this.players[0]
     this.deck = new Deck()
+    this.counter = 0
     this.nextPlayer()
     this.deal()
   }
@@ -24,13 +25,42 @@ class Round {
   }
 
   bidding() {
-    //check if there's been a complete round of bidding or not
     this.controller.removeAllButtons('action-items')
     this.controller.removeAllButtons('player-actions')
     var player = this.players[0]
+
+    if (this.counter === 4) {
+      this.counter = 0
+      this.selectSuit()
+    } else {
+      this.controller.showHand(player)
+      this.controller.addBiddingButtons()
+      this.counter ++
+      this.nextPlayer()
+     }
+  }
+
+  selectSuit(){
+
+    if (this.counter === 4) {
+      this.controller.game.play()
+      this.controller.game.round.bidding()
+
+    } else { 
+    var player = this.players[0]
+    this.controller.removeAllButtons('player-actions')
     this.controller.showHand(player)
-    this.controller.addBiddingButtons()
+    this.controller.selectSuit()
     this.nextPlayer()
+    this.counter ++
+  }
+
+  }
+
+  dynamiteDynamic() {
+    var that = GameController.controller.round
+    that.trump = this.id
+    that.startPlay()
   }
 
 
@@ -45,7 +75,7 @@ class Round {
   }
 
   resetPlayers() {
-    this.players = playersArray.slice(0)
+    this.players = this.controller.game.players.slice(0)
 
   }
 

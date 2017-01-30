@@ -29,6 +29,18 @@ class GameController {
 
   }
 
+  selectSuit(){
+    var selectSuit = this.round.selectSuit.bind(this.round)
+    var aChoiceHasBeenMade = this.round.dynamiteDynamic
+    this.createButton( selectSuit, 'Pass!', 'player-actions', 'pass')
+
+    this.createButton( aChoiceHasBeenMade, 'Diamonds', 'player-actions', 'diamonds' )
+    this.createButton( aChoiceHasBeenMade, 'Clubs', 'player-actions', 'clubs' )
+    this.createButton( aChoiceHasBeenMade, 'Hearts', 'player-actions', 'hearts' )
+    this.createButton( aChoiceHasBeenMade, 'Spades', 'player-actions', 'spades' )
+
+  }
+
   showHand(player) {
     this.currentPlayer.textContent = player.name
     this.displayCards(player.hand)
