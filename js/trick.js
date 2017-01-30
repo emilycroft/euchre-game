@@ -9,9 +9,21 @@ class Trick {
   // trick will know which team won it
   // first card played/ what suit
 
-  playedCard(card) {
-    this.cardsPlayed.push(card)
+  playCard(index, player) {
+    let playerIndex = GameController.controller.game.players.indexOf(player)
+    let card = player.hand.splice(index, 1)
+    this.playedCard(card)
+    displayHand.bind( whatever the next player )
+
+
+
   }
+
+  playedCard(card) {
+    this.cardsPlayed.push(...card)
+    console.log(this.cardsPlayed)
+  }
+
 
   whoWon(){
 

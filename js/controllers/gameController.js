@@ -34,18 +34,20 @@ class GameController {
     var aChoiceHasBeenMade = this.round.dynamiteDynamic
     this.createButton( bid, 'Pass!', 'player-actions', 'pass')
 
-    this.createButton( aChoiceHasBeenMade, 'Diamonds', 'player-actions', 'diamonds' )
-    this.createButton( aChoiceHasBeenMade, 'Clubs', 'player-actions', 'clubs' )
-    this.createButton( aChoiceHasBeenMade, 'Hearts', 'player-actions', 'hearts' )
-    this.createButton( aChoiceHasBeenMade, 'Spades', 'player-actions', 'spades' )
+    for (var i = 0; i < suits.length; i++) {
+      this.createButton( aChoiceHasBeenMade, suits[i], 'player-actions', suits[i])
+      suits[i]
+    }
 
   }
 
   showHand(player) {
-    if (this.round.counter > 8) {
+    if (this.round.counter > 8 ) {
       this.round.counter = 0
       GameController.controller.game.play()
       GameController.controller.game.round.bidding()
+    } else if (this.trick) {
+
     }
     var displayCards = this.displayCards.bind(player)
     this.currentPlayer.textContent = player.name
@@ -59,7 +61,9 @@ class GameController {
       string += `<li>${this.hand[i].cardName()}</li>`
     }
 
-    if (GameController.controller.round.caller != null) {
+    if (GameController.controller.trick) {
+        pickACardAnyCard(hand)
+    } else if (GameController.controller.round.caller != null ) {
       GameController.controller.letTheGamesBegin(this.hand)
     } else {
       GameController.controller.biddingButtons(string)
@@ -67,15 +71,23 @@ class GameController {
   }
 
   letTheGamesBegin(hand) {
-    // var trick = new Trick
+    this.trick = new Trick(GameController.controller.game.players[0])
+    debugger
+    pickACardAnyCard(hand)
+
+  }
+
+  pickACardAnyCard(hand) {
     for (var i = 0; i < hand.length; i++) {
-      let node = this.createButton( this.selectCard, hand[i].cardName(), 'player-actions', hand[i] + i)
+      let node = this.createButton( this.selectCard, hand[i].cardName(), 'player-actions', 'card' + i)
       node.setAttribute('data-cardid', i)
     }
 
   }
 
   selectCard() {
+    let i = this.getAttribute('data-cardid')
+    GameController.controller.trick.playCard(i, GameController.controller.round.players[3])
 
   }
 
