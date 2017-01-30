@@ -1,5 +1,5 @@
 class Player {
-  constructor(playerDiv, name){
+  constructor(name, playerDiv){
     this.hand = []
     this.name = name
     this.controller = new PlayerController(playerDiv)

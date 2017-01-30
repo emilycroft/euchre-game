@@ -1,8 +1,8 @@
 class PlayerController {
   constructor(playerDiv) {
-    this.playerDiv = document.getElementById(playerDiv)
-    this.cards = this.playerDiv.getElementsByClassName('cards')[0]
-    this.playedCard = this.playerDiv.getElementsByClassName('played-card')[0]
+    // this.playerDiv = document.getElementById(playerDiv)
+    // this.cards = this.playerDiv.getElementsByClassName('cards')[0]
+    // this.playedCard = this.playerDiv.getElementsByClassName('played-card')[0]
   }
 
   showCard(card) {

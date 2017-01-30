@@ -4,21 +4,19 @@ const values = [9, 10, 'J', 'Q', 'K', 'A']
 
 class Game {
   constructor() {
-    this.playerOne = new Player('playerOne')
-    this.playerTwo = new Player('playerTwo')
-    this.playerThree = new Player('playerThree')
-    this.playerFour = new Player('playerFour')
+    this.playerOne = new Player('Player One')
+    this.playerTwo = new Player('Player Two')
+    this.playerThree = new Player('Player Three')
+    this.playerFour = new Player('Player Four')
     this.players = [this.playerOne, this.playerTwo, this.playerThree, this.playerFour]
     this.score = {team1: 0, team2: 0}
     this.winner = null
   }
 
   play() {
-    // while (this.winner === null) {
       this.round = new Round(this.players)
       let player = this.players.shift()
       this.players.push(player)
-    // }
   }
 
   checkWinner(obj) {
@@ -37,14 +35,5 @@ class Game {
     }
   }
 
-  checkIfWon() {
-    if (this.playerOne.hand.length === 0) {
-      controller.updateStatus("player 2 won")
-      controller.button.remove()
-      return
-    } else if (this.playerTwo.hand.length === 0) {
-      controller.updateStatus("player 1 won")
-      controller.button.remove()
-    }
-  }
+
 }
