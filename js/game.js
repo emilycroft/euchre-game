@@ -42,6 +42,4 @@ class Game {
       GameController.controller.updateStatus("???????")
     }
   }
-
-
 }

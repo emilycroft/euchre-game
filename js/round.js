@@ -46,15 +46,14 @@ class Round {
       this.controller.game.play()
       this.controller.game.round.bidding()
 
-    } else { 
-    var player = this.players[0]
-    this.controller.removeAllButtons('player-actions')
-    this.controller.showHand(player)
-    this.controller.selectSuit()
-    this.nextPlayer()
-    this.counter ++
-  }
-
+    } else {
+      var player = this.players[0]
+      this.controller.removeAllButtons('player-actions')
+      this.controller.showHand(player)
+      this.controller.selectSuit()
+      this.nextPlayer()
+      this.counter ++
+    }
   }
 
   dynamiteDynamic() {
@@ -63,20 +62,26 @@ class Round {
     that.startPlay()
   }
 
-
   nextPlayer() {
     var currentlyPlaying = this.players.shift()
     this.players.push(currentlyPlaying)
   }
 
   startPlay() {
+    this.caller = this.players[3]
     this.resetPlayers()
+    this.triggerPlay()
     this.nextPlayer()
+  }
+
+  triggerPlay() {
+    this.controller.removeAllButtons('action-items')
+    this.controller.removeAllButtons('player-actions')
+    this.controller.showHand(this.players[0])
   }
 
   resetPlayers() {
     this.players = this.controller.game.players.slice(0)
-
   }
 
   changeScore() {

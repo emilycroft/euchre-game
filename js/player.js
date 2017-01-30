@@ -2,7 +2,7 @@ class Player {
   constructor(name, playerDiv){
     this.hand = []
     this.name = name
-    this.controller = new PlayerController(playerDiv)
+    this.controller = GameController.controller
     this.playerDiv = playerDiv
   }
 
@@ -15,4 +15,3 @@ class Player {
   }
 
 }
-

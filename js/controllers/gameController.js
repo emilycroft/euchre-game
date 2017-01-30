@@ -42,30 +42,30 @@ class GameController {
   }
 
   showHand(player) {
+    var displayCards = this.displayCards.bind(player)
     this.currentPlayer.textContent = player.name
-    this.displayCards(player.hand)
+    this.createButton( displayCards, 'Show Cards', 'player-actions', 'show-cards')
   }
 
-  displayCards(cards) {
+  displayCards() {
     var string = ""
-    for (var i = 0; i < cards.length; i++) {
-      string += `<li>${cards[i].cardName()}</li>`
+    for (var i = 0; i < this.hand.length; i++) {
+      string += `<li>${this.hand[i].cardName()}</li>`
     }
-    this.hand.innerHTML = string
+    debugger
+    this.controller.hand.innerHTML = string
   }
-  
-  
 
   startButton() {
 
     var bid = this.round.bidding.bind(this.round)
-  
+
     this.createButton( bid, 'Start Round!', 'action-items', 'start-playing')
   }
 
   createButton(callback, name, div, id) {
     let  text = document.createTextNode(name)
-        ,node = document.createElement('button');    
+        ,node = document.createElement('button');
     node.appendChild(text)
     node.id = id
     node.addEventListener('click', callback)
