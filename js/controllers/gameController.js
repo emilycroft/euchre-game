@@ -25,8 +25,6 @@ class GameController {
     var start = this.round.startPlay.bind(this.round)
     this.createButton( bid, 'Pass!', 'player-actions', 'pass')
     this.createButton( start, 'Order it Up!', 'player-actions', 'order-it' )
-
-
   }
 
   selectSuit(){
@@ -55,6 +53,7 @@ class GameController {
   }
 
   displayCards() {
+    GameController.controller.currentPlayer.textContent = this.name
     GameController.controller.removeAllButtons('player-actions')
     var string = ""
     for (var i = 0; i < this.hand.length; i++) {
@@ -62,7 +61,7 @@ class GameController {
     }
 
     if (GameController.controller.trick) {
-        pickACardAnyCard(hand)
+        GameController.controller.pickACardAnyCard(this.hand)
     } else if (GameController.controller.round.caller != null ) {
       GameController.controller.letTheGamesBegin(this.hand)
     } else {
@@ -72,12 +71,22 @@ class GameController {
 
   letTheGamesBegin(hand) {
     this.trick = new Trick(GameController.controller.game.players[0])
-    debugger
-    pickACardAnyCard(hand)
+    this.pickACardAnyCard(hand)
 
   }
 
+  trickWinner(winner) {
+    debugger
+    if (winner === this.game.playerOne || winner === this.game.playerThree) {
+      this.round.tricksWon.team1 += 1
+    } else if (winner === this.game.playerTwo || winner === this.game.playerFour) {
+      this.round.tricksWon.team2 += 1
+    }
+  }
+
+
   pickACardAnyCard(hand) {
+
     for (var i = 0; i < hand.length; i++) {
       let node = this.createButton( this.selectCard, hand[i].cardName(), 'player-actions', 'card' + i)
       node.setAttribute('data-cardid', i)
@@ -88,6 +97,7 @@ class GameController {
   selectCard() {
     let i = this.getAttribute('data-cardid')
     GameController.controller.trick.playCard(i, GameController.controller.round.players[3])
+    GameController.controller.round.nextPlayer()
 
   }
 

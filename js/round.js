@@ -6,6 +6,7 @@ class Round {
     this.dealer = this.players[0]
     this.deck = new Deck()
     this.counter = 0
+    this.tricksWon = {team1: 0, team2: 0}
     this.nextPlayer()
     this.deal()
   }

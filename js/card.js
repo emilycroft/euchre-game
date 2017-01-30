@@ -9,7 +9,8 @@ class Card {
     return `${this.face} of ${this.suit}!`
   }
 
-  value(trump) {
+  value() {
+    let trump = GameController.controller.round.trump
     if (this.suit === trump && this.face === 'J') {
       return this.defaultValue + 20
     } else if (this.suit === trump ) {
