@@ -11,7 +11,7 @@ class GameController {
   }
 
   updateStatus(str) {
-    this.status.textContent = str
+    this.status.innerHTML = str
   }
 
   removeAllButtons(div){
@@ -20,12 +20,18 @@ class GameController {
     while (actiony.firstChild) actiony.removeChild(actiony.firstChild);
   }
 
+  start() {
+    GameController.controller.round.startPlay.bind(GameController.controller.round)
+    GameController.controller.updateStatus(`<li>Trump: ${GameController.controller.round.trump}</li> <li>The dealer is ${GameController.controller.round.dealer.name}</li>`)
+  }
+
   addBiddingButtons(){
     var bid = this.round.bidding.bind(this.round)
-    var start = this.round.startPlay.bind(this.round)
-    this.createButton( bid, 'Pass!', 'player-actions', 'pass')
-    this.createButton( start, 'Order it Up!', 'player-actions', 'order-it' )
+    this.createButton( bid, 'Pass', 'player-actions', 'pass')
+    this.createButton( this.start, 'Order it Up', 'player-actions', 'order-it' )
   }
+
+
 
   selectSuit(){
     var bid = this.round.bidding.bind(this.round)
@@ -126,14 +132,11 @@ class GameController {
 
   hideCards() {
      GameController.controller.hand.innerHTML = ''
-
   }
 
   startButton() {
-
     var bid = this.round.bidding.bind(this.round)
-
-    this.createButton( bid, 'Start Round!', 'action-items', 'start-playing')
+    this.createButton( bid, 'Start Round', 'action-items', 'start-playing')
   }
 
   createButton(callback, name, div, id) {
@@ -144,31 +147,6 @@ class GameController {
     node.addEventListener('click', callback)
     document.getElementById(div).appendChild(node)
     return node
-  }
-
-
-
-  makeButton(playerDiv) {
-    // var node = document.createElement('button')
-    // var textnode = document.createTextNode("Order it up")
-    // var node2 = document.createElement('button')
-    // var textnode2 = document.createTextNode("Pass")
-    // node.addEventListener('click', this.orderItUp)
-    // node2.addEventListener('click', this.pass)
-    // node.id = "order"
-    // node2.id = "pass"
-    // node.appendChild(textnode)
-    // node2.appendChild(textnode2)
-    // document.getElementById(playerDiv).appendChild(node)
-    // document.getElementById(playerDiv).appendChild(node2)
-  }
-
-  orderItUp() {
-    alert('yep!!')
-  }
-
-  pass() {
-    alert('nope!!')
   }
 }
 
