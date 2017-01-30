@@ -22,7 +22,7 @@ class Round {
   showTrump() {
     var topCard = this.blind.shift()
     this.trump  = topCard.suit
-    GameController.controller.updateStatus(`The top card is ${topCard.cardName()}`)
+    GameController.controller.updateStatus(`The top card is the ${topCard.cardName()}`)
   }
 
   bidding() {

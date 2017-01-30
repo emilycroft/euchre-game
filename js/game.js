@@ -1,6 +1,6 @@
 const suits = ["clubs", "spades", "hearts", "diamonds"]
 
-const values = [9, 10, 'J', 'Q', 'K', 'A']
+const values = [9, 10, 'Jack', 'Queen', 'King', 'Ace']
 
 class Game {
   constructor() {
