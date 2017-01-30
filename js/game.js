@@ -27,19 +27,5 @@ class Game {
     }
   }
 
-  checkWinner(obj) {
-    var cards = [obj.playerOne, obj.playerTwo]
-    var trump = this.trump
-    if (cards[0].value(trump) > cards[1].value(trump)) {
-      this.playerOne.addCards(cards)
-      GameController.controller.updateStatus("Yay for player 1")
-    } else if (cards[0].value(trump) < cards[1].value(trump)) {
-      this.playerTwo.addCards(cards)
-      GameController.controller.updateStatus("Yay for player 2")
-    } else if (cards[0].value(trump) === cards[1].value(trump)) {
-      this.playerOne.addCards([cards[0]])
-      this.playerTwo.addCards([cards[1]])
-      GameController.controller.updateStatus("???????")
-    }
-  }
+
 }

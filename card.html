@@ -2,7 +2,11 @@
 <html>
 <head>
   <title>Euchre</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+ 
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
   <script type="text/javascript" src='js/controllers/gameController.js'></script>
   <script type="text/javascript" src='js/controllers/playerController.js'></script>
@@ -15,26 +19,39 @@
   <script type="text/javascript" src='js/round.js'></script>
 
 </head>
-<body>
-
-<div id="action-items">
-  
-</div>
-
-<div id="status">
+<body class="ph6">
+<h1> Welcome to Euchre!</h1>
+<div id="status" class="pv3">
   <p class="status"></p>
 </div>
 
-<div class="current-player">
-  <h2 id="player-name"></h2>
-  <div id="player-hand">
-  </div>
-  <div id="player-actions"></div>
+<div id="action-items" class="pv3">
+  
+</div>
+
+
+
+<div class="current-player cf">
+  <h2 id="player-name" class="f3 lh-copy"></h2>
+  
+  <div id="player-actions" class="fl w-50"></div>
+  <ul id="player-hand" class="fl w-50">
+  </ul>
+</div>
+
+
+<div id="team1" class="fl w-50">
+<p class="f3 lh-copy">Team One Score</p>
+</div>
+
+<div id="team2" class="fl w-50">
+<p class="f3 lh-copy">Team Two Score</p>
+
 </div>
 
 <div class="general-info">
-  <div id="played-cards">
-  </div>
+  <ul id="played-cards">
+  </ul>
 
   <div id="score">
   </div>

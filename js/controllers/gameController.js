@@ -21,8 +21,8 @@ class GameController {
   }
 
   start() {
-    GameController.controller.round.startPlay.bind(GameController.controller.round)
-    GameController.controller.updateStatus(`<li>Trump: ${GameController.controller.round.trump}</li> <li>The dealer is ${GameController.controller.round.dealer.name}</li>`)
+    GameController.controller.round.startPlay.bind(GameController.controller.round)()
+    GameController.controller.updateStatus(`<p class="mb0">Trump: ${GameController.controller.round.trump}</p> <p class="mv1">The dealer is ${GameController.controller.round.dealer.name}</p><p class="mt0"> Caller: ${GameController.controller.round.caller.name}</p>`)
   }
 
   addBiddingButtons(){
@@ -83,12 +83,19 @@ class GameController {
 
   trickWinner(winner) {
     if (winner === this.game.playerOne || winner === this.game.playerThree) {
+      this.addATally('team1')
       this.round.tricksWon.team1 += 1
     } else if (winner === this.game.playerTwo || winner === this.game.playerFour) {
+      this.addATally('team2')
       this.round.tricksWon.team2 += 1
     }
+
     this.trick = new Trick(winner)
     this.displayCards.bind(winner)()
+  }
+
+  addATally(team) {
+    document.getElementById(team).append('l')
   }
 
 
