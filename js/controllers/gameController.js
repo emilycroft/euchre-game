@@ -42,17 +42,23 @@ class GameController {
   }
 
   showHand(player) {
+    if (this.round.counter > 8) {
+      this.round.counter = 0
+      GameController.controller.game.play()
+      GameController.controller.game.round.bidding()
+    }
     var displayCards = this.displayCards.bind(player)
     this.currentPlayer.textContent = player.name
     this.createButton( displayCards, 'Show Cards', 'player-actions', 'show-cards')
   }
 
   displayCards() {
+    GameController.controller.removeAllButtons('player-actions')
     var string = ""
     for (var i = 0; i < this.hand.length; i++) {
       string += `<li>${this.hand[i].cardName()}</li>`
     }
-  
+
     if (GameController.controller.round.caller != null) {
       GameController.controller.letTheGamesBegin(this.hand)
     } else {
@@ -61,15 +67,25 @@ class GameController {
   }
 
   letTheGamesBegin(hand) {
+    // var trick = new Trick
+    for (var i = 0; i < hand.length; i++) {
+      let node = this.createButton( this.selectCard, hand[i].cardName(), 'player-actions', hand[i] + i)
+      node.setAttribute('data-cardid', i)
+    }
+
+  }
+
+  selectCard() {
 
   }
 
   biddingButtons(string) {
-
-     GameController.controller.removeAllButtons('player-actions')
-    if (GameController.controller.round.counter > 4) {
+    if (GameController.controller.round.counter > 8) {
+      GameController.controller.game.play()
+      GameController.controller.game.round.bidding()
+    } else if (GameController.controller.round.counter > 4) {
       GameController.controller.selectSuit()
-    } else { 
+    } else {
       GameController.controller.addBiddingButtons()
     }
     GameController.controller.hand.innerHTML = string
@@ -94,6 +110,7 @@ class GameController {
     node.id = id
     node.addEventListener('click', callback)
     document.getElementById(div).appendChild(node)
+    return node
   }
 
 
