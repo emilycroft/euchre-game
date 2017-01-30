@@ -46,16 +46,20 @@ class GameController {
   }
 
   showHand(player) {
-    if (this.round.counter > 8 ) {
+    if (this.trick) {
+      var picker = this.enclosedPicker.bind(player)
+
+      this.createButton( picker, "Show Cards", 'player-actions', 'show-cards')
+    } else if ( this.round.counter < 8) {
+      var displayCards = this.displayCards.bind(player)
+      this.currentPlayer.textContent = player.name
+      this.createButton( displayCards, 'Show Cards', 'player-actions', 'show-cards')
+    } else {
       this.round.counter = 0
       GameController.controller.game.play()
       GameController.controller.game.round.bidding()
-    } else if (this.trick) {
-
     }
-    var displayCards = this.displayCards.bind(player)
-    this.currentPlayer.textContent = player.name
-    this.createButton( displayCards, 'Show Cards', 'player-actions', 'show-cards')
+   
   }
 
   displayCards() {
@@ -67,7 +71,7 @@ class GameController {
     }
 
     if (GameController.controller.trick) {
-        GameController.controller.pickACardAnyCard(this)
+        GameController.controller.showHand(this)
     } else if (GameController.controller.round.caller != null ) {
       GameController.controller.letTheGamesBegin(this)
     } else {
@@ -96,6 +100,16 @@ class GameController {
 
   addATally(team) {
     document.getElementById(team).append('l')
+  }
+
+  enclosedPicker(){
+    var that = this
+    GameController.controller.removeAllButtons('player-actions')
+    for (var i = 0; i < that.hand.length; i++) {
+      let selectedCard = GameController.controller.selectCard(that)
+      let node = GameController.controller.createButton( selectedCard, that.hand[i].cardName(), 'player-actions', 'card' + i)
+      node.setAttribute('data-cardid', i)
+    }
   }
 
 
