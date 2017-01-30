@@ -27,34 +27,28 @@ class Round {
   bidding() {
     this.controller.removeAllButtons('action-items')
     this.controller.removeAllButtons('player-actions')
+    this.controller.hideCards()
     var player = this.players[0]
-
-    if (this.counter === 4) {
-      this.counter = 0
-      this.selectSuit()
-    } else {
-      this.controller.showHand(player)
-      this.controller.addBiddingButtons()
-      this.counter ++
-      this.nextPlayer()
-     }
+    this.controller.showHand(player)
+    this.counter ++
+    this.nextPlayer()
   }
 
-  selectSuit(){
+  // selectSuit(){
 
-    if (this.counter === 4) {
-      this.controller.game.play()
-      this.controller.game.round.bidding()
+  //   if (this.counter === 4) {
+  //     this.controller.game.play()
+  //     this.controller.game.round.bidding()
 
-    } else {
-      var player = this.players[0]
-      this.controller.removeAllButtons('player-actions')
-      this.controller.showHand(player)
-      this.controller.selectSuit()
-      this.nextPlayer()
-      this.counter ++
-    }
-  }
+  //   } else {
+  //     var player = this.players[0]
+  //     this.controller.removeAllButtons('player-actions')
+  //     this.controller.showHand(player)
+  //     this.controller.selectSuit()
+  //     this.nextPlayer()
+  //     this.counter ++
+  //   }
+  // }
 
   dynamiteDynamic() {
     var that = GameController.controller.round
@@ -77,6 +71,7 @@ class Round {
   triggerPlay() {
     this.controller.removeAllButtons('action-items')
     this.controller.removeAllButtons('player-actions')
+    this.controller.hideCards();
     this.controller.showHand(this.players[0])
   }
 

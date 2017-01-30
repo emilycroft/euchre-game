@@ -30,9 +30,9 @@ class GameController {
   }
 
   selectSuit(){
-    var selectSuit = this.round.selectSuit.bind(this.round)
+    var bid = this.round.bidding.bind(this.round)
     var aChoiceHasBeenMade = this.round.dynamiteDynamic
-    this.createButton( selectSuit, 'Pass!', 'player-actions', 'pass')
+    this.createButton( bid, 'Pass!', 'player-actions', 'pass')
 
     this.createButton( aChoiceHasBeenMade, 'Diamonds', 'player-actions', 'diamonds' )
     this.createButton( aChoiceHasBeenMade, 'Clubs', 'player-actions', 'clubs' )
@@ -52,8 +52,32 @@ class GameController {
     for (var i = 0; i < this.hand.length; i++) {
       string += `<li>${this.hand[i].cardName()}</li>`
     }
-    debugger
-    this.controller.hand.innerHTML = string
+  
+    if (GameController.controller.round.caller != null) {
+      GameController.controller.letTheGamesBegin(this.hand)
+    } else {
+      GameController.controller.biddingButtons(string)
+    }
+  }
+
+  letTheGamesBegin(hand) {
+
+  }
+
+  biddingButtons(string) {
+
+     GameController.controller.removeAllButtons('player-actions')
+    if (GameController.controller.round.counter > 4) {
+      GameController.controller.selectSuit()
+    } else { 
+      GameController.controller.addBiddingButtons()
+    }
+    GameController.controller.hand.innerHTML = string
+  }
+
+  hideCards() {
+     GameController.controller.hand.innerHTML = ''
+
   }
 
   startButton() {

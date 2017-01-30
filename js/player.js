@@ -2,7 +2,6 @@ class Player {
   constructor(name, playerDiv){
     this.hand = []
     this.name = name
-    this.controller = GameController.controller
     this.playerDiv = playerDiv
   }
 
@@ -11,7 +10,7 @@ class Player {
   }
 
   showCards(){
-    this.controller.showHand(this.hand)
+    GameController.controller.showHand(this.hand)
   }
 
 }
